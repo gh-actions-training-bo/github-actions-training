@@ -11,7 +11,7 @@ jobs:
 
       - name: Call composite action
         id: step1
-        uses: ./.github/Actions/demoe-composite-actions
+        uses: ./.github/Actions/demo-composite-actions
         with:
           greeting: Good night
           name: Bo
