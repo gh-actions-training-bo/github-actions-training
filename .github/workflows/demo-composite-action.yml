@@ -17,4 +17,4 @@ jobs:
           name: Bo
 
       - name: Print output from last step
-        run: echo "${{steps.step1.outputs.full-greeting}}
+        run: echo "${{steps.step1.outputs.full-greeting}}"
