@@ -6,12 +6,20 @@ on:
     branches: 
       - main
       - feat/*
+  pull_request:
+    branches:
+      - main
+  issues:
+    types: 
+      - opened
+      - closed
+  
   # Schedule events
   # Manual events
   
 
 jobs:
-  Graeeting:
+  Greeting:
     runs-on: ubuntu-latest
     steps:
       - name: Greeting step
