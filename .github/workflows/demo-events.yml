@@ -34,14 +34,30 @@ on:
           - Awesome
           - Okay
           - Better not say
+
+env:
+  MY_NAME: Bo
+  GREETING: Hi
       
 
 jobs:
   Greeting:
     runs-on: ubuntu-latest
     steps:
-      - name: Greeting step
-        run: echo Hello World!
+      - name: "Greeting step expect Hi"
+        run: echo $GREETING $MY_NAME
+
+  Greeting2:
+    runs-on: ubuntu-latest
+    env:
+      GREETING: good morning
+    steps:
+      - name: "Greeting step expects good morning."
+        run: echo $GREETING $MY_NAME
+      - name: "Greeting step expects good afternoon."
+        run: echo $GREETING $MY_NAME
+        env:
+          GREETING: good afternoon.
 
   Job2:
     runs-on: ubuntu-latest
