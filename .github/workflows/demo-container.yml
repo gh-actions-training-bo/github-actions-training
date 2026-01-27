@@ -1,4 +1,4 @@
-name: Test Docker action - THANH
+name: Test Docker action - Bo
 
 on:
   workflow_dispatch:
@@ -11,9 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: greeting action step
         id: greeting-step
-        uses: ./.github/actions/demo-container-actions
+        uses: ./.github/Actions/demo-container-actions
         with:
           greeting: "Good afternoon"
-          name: "My fiend"
+          name: "My friend"
       - name: Show output from last step
         run: echo "${{ steps.greeting-step.outputs.greeting-text }}"
