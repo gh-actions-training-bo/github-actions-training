@@ -48,7 +48,7 @@ jobs:
         run: |
           echo $GREETING $MY_NAME
           echo "${{env.GREETING}} ${{env.MY_NAME}}
-        if: env.MY_NAME == 'Bo'
+        if: ${{env.MY_NAME == 'Bo'}}
   Greeting2:
     runs-on: ubuntu-latest
     env:
