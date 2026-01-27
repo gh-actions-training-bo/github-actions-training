@@ -43,12 +43,12 @@ jobs:
       - name: Greeting step
         run: echo Hello World!
 
-  job2:
+  Job2:
     runs-on: ubuntu-latest
     needs: [Greeting]
     steps:
       -name: Step2
-       run: echo ${{ github.actor }} is learning GitHub Actions
+       run: echo "${{ github.actor }} is learning GitHub Actions"
       -name: Step3
        run: echo "Great!"
        if: ${{ inputs.areYouFeelingGood }}
