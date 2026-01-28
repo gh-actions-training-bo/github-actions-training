@@ -1,0 +1,64 @@
+#create a workflow iwth a name of your choice
+#it should be triggered whenever there is a push on the main branch
+#it should be triggered manually too
+
+#define 2 environment variables: var1 and va2
+#var1 is boolean
+#var2 is text
+
+#it should have 2 jobs
+#1st job should contain 2 steps
+#step 1
+    #- should be executed only if var1 is true
+    #- echo the var2
+#step 2
+#   - echo your name
+
+#2nd job should executed only if job1 is executed successfully
+# job2 has only 1 step - you can do echo "good morning"
+#commit the file and run the workflow, check if everything works
+
+name: Retro Day 1
+
+on: 
+  # Webhook events
+  push:
+    branches: 
+      - main
+  # Manual events
+  workflow_dispatch:
+    inputs:
+      var1:
+        description: "Run step 1? Enter 'true' or 'false'"
+        required: false
+        default: "false"
+      var2:
+        description: "Text to echo in step 1"
+        required: false
+        default: "Hello from input"
+      
+env:
+  var1: "false"     # boolean-like string: "true" or "false"
+  var2: "Hello from env"  # free text
+
+jobs:
+  job1:
+    name: First Job
+    runs-on: ubuntu-latest
+    # Compute effective values based on manual inputs (if any) or env defaults
+    steps:
+      - name: Step 1 - echo var2 when var1 is true
+        if: ${{ env.var1 == 'true' }}
+        run: echo "$var2"
+
+      - name: Step 2 - echo actor name
+        run: echo "Triggered by ${{ github.actor }}"
+
+  job2:
+    name: Second Job
+    runs-on: ubuntu-latest
+    needs: job1
+    if: ${{ needs.job1.result == 'success' }}
+    steps:
+      - name: Good morning
+        run: echo "good morning"
