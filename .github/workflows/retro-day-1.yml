@@ -38,8 +38,8 @@ on:
         default: "Hello from input"
       
 env:
-  var1: "false"     # boolean-like string: "true" or "false"
-  var2: "Hello from env"  # free text
+  var1: ${{ github.event.inputs.VAR1 || 'true' }}
+  var2: ${{ github.event.inputs.VAR2 || 'Hello World' }} 
 
 jobs:
   job1:
